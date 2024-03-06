@@ -10,7 +10,7 @@ app = Flask(__name__)
 # GET /index
 # Returns the homepage
 # Try it:
-#   ; open http://localhost:5000/index
+#   ; open http://localhost:5001/index
 @app.route('/index', methods=['GET'])
 def get_index():
     return render_template('index.html')
@@ -19,4 +19,4 @@ def get_index():
 # They also start the server configured to use the test database
 # if started in test mode.
 if __name__ == '__main__':
-    app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
