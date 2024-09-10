@@ -24,7 +24,7 @@ Put the different nouns in this table. Replace the example with your own nouns.
 | Record                | Properties          |
 | --------------------- | ------------------  |
 | users                  | id, email, password, username
-| spaces                 | id, name, description, price_per_night, availiable_dates, user_id_host
+| spaces                 | id, name, description, price_per_night, availiable_dates, user_id
 | bookings               | id, user_id_guest, space_id, date
 
 1. Name of the first table (always plural): `users` 
