@@ -12,7 +12,7 @@ https://trello.com/b/PQZ5D50O/makers-bnb
 Nouns:
 
 users (guest, host), spaces, price per night, dates, description, avaibility, name of space, 
-email, password, first name, last name, 
+email, password, username
 
 
 ```
@@ -23,13 +23,13 @@ Put the different nouns in this table. Replace the example with your own nouns.
 
 | Record                | Properties          |
 | --------------------- | ------------------  |
-| user                  | id, email, password, first_name, last_name
-| space                 | id, name, description, price_per_night, availiable_dates, user_id_host
-| booking               | id, user_id_guest, space_id, date
+| users                  | id, email, password, username
+| spaces                 | id, name, description, price_per_night, availiable_dates, user_id_host
+| bookings               | id, user_id_guest, space_id, date
 
 1. Name of the first table (always plural): `users` 
 
-    Column names: `id`, `email`, `password`, `first_name`, `last_name`
+    Column names: `id`, `email`, `password`, `username`
 
 2. Name of the second table (always plural): `spaces` 
 
@@ -55,8 +55,7 @@ Table: users
 id: SERIAL
 email: text
 password: text
-first_name: text
-last_name: text
+username: text
 
 Table: spaces
 id: SERIAL
@@ -146,5 +145,5 @@ CREATE TABLE albums (
 ## 6. Create the tables
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 makersbnb_db < seeds/makersbnb.sql
 ```
