@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your Listings</title>
+
+        <!--
+            Head to https://github.com/makersacademy/web-applications-in-python/blob/main/pills/loading_css_or_static_files.md
+            If you're wondering how the CSS file below is being loaded.
+        -->
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <h2>Your Listings</h2>
+        <!--
+            Loop through host's spaces and show space values to user
+        -->
+        {% for space in spaces %}
+        <p class="name">Name: {{ space.name }} </p>
+        <p class="description">Description: {{ space.description }} </p>
+        <p class="price">Price per Night: {{ space.price_per_night }}</p>
+        <p class="start">Availability Start: {{ space.availability_start }}</p>
+        <p class="end">Availability End: {{ space.availability_end }}</p>
+        <button>Delete</button> <!--Need to add function, place holder for now-->
+        <button>Update</button> <!--Need to add function, place holder for now-->
+        {% endfor %}
+    </body>
+</html>

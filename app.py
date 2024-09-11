@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, render_template, session
 from lib.database_connection import get_flask_database_connection
 from routes.user_routes import *
+from routes.host_routes import *
 from routes.booking_routes import *
 
 # Create a new Flask app
@@ -25,12 +26,9 @@ def get_index():
 # imports space routes
 from routes.space_routes import apply_space_routes
 apply_space_routes (app)
-
-
 get_user_routes(app)
-
+get_host_routes(app)
 apply_booking_routes(app)
-
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
