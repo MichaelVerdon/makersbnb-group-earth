@@ -28,11 +28,17 @@ def test_create_a_space(db_connection):
         Space(4, 'Castle', 'A lovely castle.', 500, '2024-12-25', '2024-12-27', 2)
     ]
 
-def test_get_space_by_id(db_connection):
+def test_get_space_by_user_id(db_connection):
     db_connection.seed("seeds/makersbnb.sql")
     repository = SpaceRepository(db_connection)
     result = repository.get_by_user_id(3)
     assert result == [
         Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3)
     ]
+def test_get_place_details_by_id(db_connection):
+    db_connection.seed("seeds/makersbnb.sql")
+    repository = SpaceRepository(db_connection)
+    result = repository.get_by_id(1)
+    assert result == Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3)
+
 

@@ -1,4 +1,5 @@
 from lib.booking import *
+from lib.space import *
 
 class BookingRepository:
     def __init__(self, db_connection):
@@ -25,3 +26,9 @@ class BookingRepository:
     def remove_booking(self, space_id, user_id, booking_date):
         self.db_connection.execute\
         (f"DELETE FROM bookings WHERE space_id = {space_id} AND user_id = {user_id} AND booking_date = '{booking_date}'")
+
+    def get_booking_details(self, space):
+        return {
+            "name":space.name,
+            "price":space.price_per_night
+        }

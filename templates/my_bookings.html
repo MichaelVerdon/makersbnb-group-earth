@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MakersBnB</title>
+
+        <!--
+            Head to https://github.com/makersacademy/web-applications-in-python/blob/main/pills/loading_css_or_static_files.md
+            If you're wondering how the CSS file below is being loaded.
+        -->
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <h1>My Bookings</h1>
+        <p>Your Bookings:</p>
+        <div>
+        {% for booking in bookings %}
+        <h3>Date</h3>
+        <p class="date">
+            {{ booking["date"] }}
+        </p>
+        <h3>Name and Price</h3>
+        <p class="details">
+            {{ booking["name"] }}
+            {{ booking["price"] }}
+        </p>
+        {% endfor %}
+        </div>
+    </body>
+</html>
