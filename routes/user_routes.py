@@ -1,8 +1,9 @@
-from flask import Flask, request, app, render_template, redirect
+from flask import Flask, request, app, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.user_repository import UserRepository
 from lib.user import User
 import os
+import sys
 
 def get_user_routes(app):
 
@@ -20,9 +21,9 @@ def get_user_routes(app):
     def sign_up_user():
         connection = get_flask_database_connection(app)
         repo = UserRepository(connection)
-        email = str(request.form['email'])
-        password = str(request.form['password'])
-        username = str(request.form['username'])
+        email = request.form['email']
+        password = request.form['password']
+        username = request.form['username']
         repo.create(email, password, username)
         return redirect('/sign-in')
 
@@ -34,6 +35,12 @@ def get_user_routes(app):
     def sign_in_user():
         connection = get_flask_database_connection(app)
         repo = UserRepository(connection)
-        username = str(request.form['username'])
-        password = str(request.form['password'])
-    
+        email = request.form['email']
+        password = request.form['password']
+        user = repo.verify_user(email, password)
+        if user:
+            session['user_id'] = user.id
+            session['username'] = user.username
+            return redirect('/index')
+        else:
+            return render_template('/sign_in.html', sign_in_message="Invalid email or password")

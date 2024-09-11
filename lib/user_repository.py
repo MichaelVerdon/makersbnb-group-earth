@@ -17,5 +17,8 @@ class UserRepository:
         return [User(row['id'], row['email'], row['password'], row['username'])]
 
     def verify_user(self, email, password):
-        row = self._connection.execute('SELECT * FROM users WHERE email = %s AND password = %s', [email, password])[0]
-        return User(row['id'], row['email'], row['password'], row['username'])
+        rows = self._connection.execute('SELECT * FROM users WHERE email = %s AND password = %s', [email, password])
+        if rows:
+            row = rows[0]
+            return User(row['id'], row['email'], row['password'], row['username'])
+        

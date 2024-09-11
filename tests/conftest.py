@@ -46,5 +46,6 @@ def test_web_address(xprocess):
 @pytest.fixture
 def web_client():
     app.config['TESTING'] = True # This gets us better errors
+    app.config['SECRET_KEY'] = "psyducks_x_slowbros"
     with app.test_client() as client:
         yield client
