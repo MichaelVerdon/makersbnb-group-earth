@@ -131,7 +131,7 @@ CREATE TABLE users (
 -- Then the table with the foreign key second.
 CREATE TABLE albums (
   id SERIAL PRIMARY KEY,
-  title text,git 
+  title text
   release_year int,
 -- The foreign key name is always {other_table_singular}_id
   artist_id int,
