@@ -33,7 +33,12 @@ def test_create(db_connection):
         User(5,'user5@example.com', 'password5', 'guest3')
     ]
 
-def test_get_with_id(db_connection):
+'''
+When I call #verify_user with a valid email and password
+I get a user object with those details returned
+'''
+
+def test_verify_with_valid_details(db_connection):
     db_connection.seed('seeds/makersbnb.sql')
     repository = UserRepository(db_connection)
-    assert repository.get_by_id(2) == User(2, 'guest2@example.com', 'password2', 'guest2')
+    repository.verify_user('guest2@example.com', 'password2')
