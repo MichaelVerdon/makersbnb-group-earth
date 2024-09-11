@@ -15,6 +15,6 @@ def get_host_routes(app):
         user_id = session['user_id']
         connection = get_flask_database_connection(app)
         repository = SpaceRepository(connection)
-        spaces = repository.get_by_id(user_id)
+        spaces = repository.get_by_user_id(user_id)
 
         return render_template('host_listings.html', spaces=spaces)

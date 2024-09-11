@@ -31,7 +31,7 @@ def test_create_a_space(db_connection):
 def test_get_space_by_id(db_connection):
     db_connection.seed("seeds/makersbnb.sql")
     repository = SpaceRepository(db_connection)
-    result = repository.get_by_id(3)
+    result = repository.get_by_user_id(3)
     assert result == [
         Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3)
     ]

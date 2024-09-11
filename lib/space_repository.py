@@ -22,7 +22,7 @@ class SpaceRepository():
         space.id = row["id"]
         return space
 
-    def get_by_id(self, user_id):
+    def get_by_user_id(self, user_id):
         """Returns list of spaces for given user_id"""
         rows = self.connection.execute("SELECT * FROM spaces WHERE user_id = %s", [user_id])
         spaces = []
