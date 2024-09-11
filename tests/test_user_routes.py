@@ -80,7 +80,6 @@ def test_user_signs_in_with_correct_email_incorrect_password(web_client, test_we
     page.fill("input[name='email']", 'guest1@example.com')
     page.fill("input[name='password']", 'password')
     page.locator('.signin').click()
-    page.screenshot(path='screenshot.png', full_page=True)
     sign_in_message = page.locator(".sign_in_message")
     expect(sign_in_message).to_have_text("Invalid email or password")
 
