@@ -26,7 +26,6 @@ def test_sign_up_on_page(web_client, test_web_address, db_connection, page: Page
     connection = db_connection
     repo = UserRepository(connection)
     page.goto(f'http://{test_web_address}/create-account')
-    page.screenshot(path="screenshot.png", full_page=True)
     page.fill("input[name='username']", 'test1')
     page.fill("input[name='password']", 'password1')
     page.fill("input[name='email']", 'user5@example.com')
