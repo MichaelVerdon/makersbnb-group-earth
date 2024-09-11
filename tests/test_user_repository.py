@@ -32,3 +32,8 @@ def test_create(db_connection):
         User(4, 'host2@example.com', 'password4', 'host2'),
         User(5,'user5@example.com', 'password5', 'guest3')
     ]
+
+def test_get_with_id(db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    repository = UserRepository(db_connection)
+    assert repository.get_by_id(2) == User(2, 'guest2@example.com', 'password2', 'guest2')
