@@ -14,7 +14,6 @@ def test_show_spaces_for_host(test_web_address, db_connection, page: Page):
     page.fill("input[name='password']", 'password3')
     page.locator('.signin').click()
     page.goto(f'http://{test_web_address}/host-listings')
-    page.screenshot(path='screenshot.png', full_page=True)
     expect(page.locator('.name')).to_have_text('Name: Beach House')
     expect(page.locator('.description')).to_have_text('Description: A beautiful beach house with ocean view.')
     expect(page.locator('.price')).to_have_text('Price per Night: 150')
