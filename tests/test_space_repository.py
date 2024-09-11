@@ -27,3 +27,5 @@ def test_create_a_space(db_connection):
         Space(3, 'Mountain Cabin', 'A cozy cabin in the mountains.', 120, '2024-10-01', '2024-10-15', 4),
         Space(4, 'Castle', 'A lovely castle.', 500, '2024-12-25', '2024-12-27', 2)
     ]
+
+
