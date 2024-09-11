@@ -1,6 +1,6 @@
 from lib.space import Space
 from lib.space_repository import SpaceRepository
-
+from lib.user_repository import UserRepository
 
 #Test that we are getting the list of all spaces of the database
 def test_return_all(db_connection):
@@ -26,4 +26,18 @@ def test_create_a_space(db_connection):
         Space(2, 'Tree House', 'A house my dad build in my backyard', 125, '2024-10-11', '2024-11-30', 1),
         Space(3, 'Mountain Cabin', 'A cozy cabin in the mountains.', 120, '2024-10-01', '2024-10-15', 4),
         Space(4, 'Castle', 'A lovely castle.', 500, '2024-12-25', '2024-12-27', 2)
+    ]
+
+'''
+When I call #remove_space with a name
+the space is removed from the database
+'''
+
+def test_remove_with_name_removes_from_database(db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    repository = SpaceRepository(db_connection)
+    repository.remove_space('Tree House')
+    assert repository.all() == [
+        Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3),
+        Space(3, 'Mountain Cabin', 'A cozy cabin in the mountains.', 120, '2024-10-01', '2024-10-15', 4)
     ]

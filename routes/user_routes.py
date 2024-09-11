@@ -20,9 +20,9 @@ def get_user_routes(app):
     def sign_up_user():
         connection = get_flask_database_connection(app)
         repo = UserRepository(connection)
-        email = str(request.form['email'])
-        password = str(request.form['password'])
-        username = str(request.form['username'])
+        email = request.form['email']
+        password = request.form['password']
+        username = request.form['username']
         repo.create(email, password, username)
         return redirect('/sign-in')
 
