@@ -1,11 +1,11 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, session
 from lib.database_connection import get_flask_database_connection
 from routes.user_routes import *
 
 # Create a new Flask app
 app = Flask(__name__)
-
+app.secret_key = "psyducks_x_slowbros"
 # == Your Routes Here ==
 
 # GET /index
@@ -14,7 +14,12 @@ app = Flask(__name__)
 #   ; open http://localhost:5001/index
 @app.route('/index', methods=['GET'])
 def get_index():
-    return render_template('index.html')
+    if 'username' in session:
+        username = session['username']
+    else:
+        username = ""
+
+    return render_template('index.html', username=username)
 
 
 get_user_routes(app)
