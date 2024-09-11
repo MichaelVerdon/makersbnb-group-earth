@@ -15,6 +15,10 @@ app = Flask(__name__)
 def get_index():
     return render_template('index.html')
 
+# imports space routes
+from routes.space_routes import apply_space_routes
+apply_space_routes (app)
+
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database

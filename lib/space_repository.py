@@ -21,3 +21,5 @@ class SpaceRepository():
         row = rows[0]
         space.id = row["id"]
         return space
+
+
