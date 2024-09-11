@@ -1,5 +1,7 @@
 from lib.booking_repository import *
 from lib.booking import *
+from lib.space import *
+from lib.space_repository import *
 
 def test_repo_all(db_connection):
     db_connection.seed("./seeds/makersbnb.sql")
@@ -36,3 +38,14 @@ def test_remove_booking(db_connection):
         Booking(2, 2, 2, '2024-10-10'),
         Booking(3, 3, 1, '2024-11-11')
     ]
+
+def test_get_booking_details(db_connection):
+    db_connection.seed("./seeds/makersbnb.sql")
+    booking_repo = BookingRepository(db_connection)
+    space_repo = SpaceRepository(db_connection)
+    space = space_repo.get_by_id(1)
+    details = booking_repo.get_booking_details(space)
+    assert details == {
+        "name":"Beach House",
+        "price":150
+    }
