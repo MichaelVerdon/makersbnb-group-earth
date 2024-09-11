@@ -22,4 +22,15 @@ class SpaceRepository():
         space.id = row["id"]
         return space
 
+    def get_by_id(self, user_id):
+        """Returns list of spaces for given user_id"""
+        rows = self.connection.execute("SELECT * FROM spaces WHERE user_id = %s", [user_id])
+        spaces = []
+        for row in rows:
+            item = Space(row["id"], row["name"], row["description"], row["price_per_night"],\
+                        str(row["availability_start"]), str(row["availability_end"]), row["user_id"])
+            spaces.append(item)
+        return spaces
+
+
 
