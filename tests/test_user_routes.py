@@ -56,12 +56,12 @@ def test_create_account_goes_to_sign_in(web_client, test_web_address, db_connect
     expect(h2).to_have_text('Sign In')
 
 def test_user_signs_in(web_client, test_web_address, db_connection, page: Page):
+    # to set up session variables use the code below up to and including page.locator('.signin').click()
     db_connection.seed('seeds/makersbnb.sql')
     page.goto(f'http://{test_web_address}/sign-in')
     page.fill("input[name='email']", 'guest1@example.com')
     page.fill("input[name='password']", 'password1')
     page.locator('.signin').click()
-    page.screenshot(path='screenshot.png', full_page=True)
     username_status_element = page.locator(".current_user_username")
     expect(username_status_element).to_have_text("guest1")
 
@@ -71,7 +71,6 @@ def test_user_signs_in_with_incorrect_email_but_correct_password(web_client, tes
     page.fill("input[name='email']", 'guest1@exmple.com')
     page.fill("input[name='password']", 'password1')
     page.locator('.signin').click()
-    page.screenshot(path='screenshot.png', full_page=True)
     sign_in_message = page.locator(".sign_in_message")
     expect(sign_in_message).to_have_text("Invalid email or password")
 
