@@ -28,3 +28,14 @@ def test_user_signs_in_with_correct_email_incorrect_password(test_web_address, d
     page.locator('.signin').click()
     sign_in_message = page.locator(".sign_in_message")
     expect(sign_in_message).to_have_text("Invalid email or password")
+
+'''
+When I want to make a new account and I'm on the sign in page
+I can click a the create account button to take me to the 
+create account page
+'''
+
+def test_can_get_to_create_account_from_sign_in_page(test_web_address, page):
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.locator('.createaccount').click()
+    assert page.url == f'http://{test_web_address}/create-account'
