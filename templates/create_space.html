@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new space</title>
+</head>
+<body>
+
+    <h2  class="page-title">Create new space</h2>
+
+    <form action="/create-space" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="submit" class="createaccount">Create Account</button>
+
+    </form>
+    <button class="createspace">
+        <a href="/sign-in">Sign In</a>
+    </button>
+
+</body>
+</html>

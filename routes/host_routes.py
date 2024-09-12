@@ -18,3 +18,8 @@ def get_host_routes(app):
         spaces = repository.get_by_user_id(user_id)
 
         return render_template('host_listings.html', spaces=spaces)
+
+    @app.route('/create-space', methods=['GET'])
+
+    def get_new_space_page():
+        return render_template('create_space.html')
