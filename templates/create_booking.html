@@ -15,5 +15,15 @@
         <p>{{place.description}}</p>
         <p>Price-per-night: {{place.price_per_night}}</p>
         <p>Available-from: {{place.availability_start}} to {{place.availability_end}}</p>
+
+        <form action="/create-booking" method="post">
+            <label for="booking-date">Booking Date (YYYY-MM-DD):</label><br>
+            <input type="text" id="booking-date" name="booking-date" required><br><br>
+            <input type="hidden" name="place_id" value='{{ place.id }}'>
+
+
+            <button type="submit" class="submit-booking">Create Booking</button>
+        </form>
+        <p class='error_message'>{{ error_message }}</p>
     </body>
 </html>
