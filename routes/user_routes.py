@@ -36,4 +36,6 @@ def get_user_routes(app):
         repo = UserRepository(connection)
         username = str(request.form['username'])
         password = str(request.form['password'])
+
+    @app.route('/remove-space', methods=['POST'])
     

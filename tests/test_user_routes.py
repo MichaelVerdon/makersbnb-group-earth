@@ -1,7 +1,8 @@
 from routes.user_routes import *
 from playwright.sync_api import Page, expect
 from lib.user_repository import UserRepository
-
+from lib.space_repository import SpaceRepository
+from lib.space import Space
 '''
 As an admin, I can send a #GET request
 to see all the users
@@ -55,7 +56,21 @@ def test_create_account_goes_to_sign_in(web_client, test_web_address, db_connect
     h2 = page.locator('h2')
     expect(h2).to_have_text('Sign In')
 
+"""
+So I as user_host can a remove a space
+so that is no longer bookable.
+"""
 
+def test_remove_space_no_longer_bookable(web_client, test_web_address, db_connection, page: Page):
+    db_connection.seed('seeds/makersbnb.sql')
+    repo = SpaceRepository(db_connection)
+    page.goto(f"http://{test_web_address}/remove-space")
+    page.fill("input[name = Name]", "Tree House")
+    page.locator(".removespace").click()
+    assert repo.all() == [
+        Space(1, 1, '2024-09-20'),
+        Space(3, 1, '2024-11-11')
+    ]
 
 
 
