@@ -27,7 +27,9 @@
         <p class="start">Availability Start: {{ space.availability_start }}</p>
         <p class="end">Availability End: {{ space.availability_end }}</p>
         <button>Delete</button> <!--Need to add function, place holder for now-->
-        <button>Update</button> <!--Need to add function, place holder for now-->
+        <a href="/update-space/{{space.id}}">
+            <button class="update_{{space.id}}">Update</button> <!--Need to add function, place holder for now-->
+        </a>
         {% endfor %}
     </body>
 </html>

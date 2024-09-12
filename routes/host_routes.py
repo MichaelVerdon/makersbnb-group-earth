@@ -39,3 +39,32 @@ def get_host_routes(app):
         )
         space = repository.create(space)
         return redirect("/host-listings")
+    
+    @app.route("/update-space/<int:space_id>", methods=["GET"])
+    def goto_update_space(space_id):
+        connection = get_flask_database_connection(app)
+        repository = SpaceRepository(connection)
+        space = repository.get_by_id(space_id)
+        return render_template('update_space.html', space=space)
+    
+    @app.route("/update-space/<int:space_id>", methods=["POST"])
+    def update_space(space_id):
+        connection = get_flask_database_connection(app)
+        repository = SpaceRepository(connection)
+        name = request.form['name']
+        if name:
+            repository.update_name(space_id, name)
+        description = request.form['description']
+        if description:
+            repository.update_description(space_id, description)
+        price = request.form['price_per_night']
+        if price:
+            repository.update_price_per_night(space_id, price)
+        start = request.form['availability_start']
+        if start:
+            repository.update_availability_start(space_id, start)
+        end = request.form['availability_end']
+        if end:
+            repository.update_availability_end(space_id, end)
+        
+        return redirect("/host-listings")

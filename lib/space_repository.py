@@ -36,6 +36,32 @@ class SpaceRepository():
                         str(row["availability_start"]), str(row["availability_end"]), row["user_id"])
             spaces.append(item)
         return spaces
+    
+
+    #this will update each detail of the space given the space's name
+    
+    def update_name(self, space_id, new_name):
+        self.connection.execute("UPDATE spaces SET name=%s  WHERE id= %s", [new_name, space_id])
+
+
+    def update_description(self, space_id, new_description):
+        self.connection.execute("UPDATE spaces SET description=%s  WHERE id= %s", [new_description, space_id])
+
+
+
+    def update_price_per_night(self, space_id, new_price_per_night):
+        self.connection.execute("UPDATE spaces SET price_per_night=%s  WHERE id= %s", [new_price_per_night, space_id])
+
+    def update_availability_start(self, space_id, new_availability_start):
+        self.connection.execute("UPDATE spaces SET availability_start=%s  WHERE id= %s", [new_availability_start, space_id])
+
+
+    def update_availability_end(self, space_id, new_availability_end):
+        self.connection.execute("UPDATE spaces SET availability_end=%s  WHERE id= %s", [new_availability_end, space_id])
+
+
+
+
 
 
 
