@@ -33,3 +33,18 @@ def test_button_from_host_listing_to_hompage(test_web_address, page):
     page.goto(f'http://{test_web_address}/host-listings')
     page.locator('.homepage').click()
     assert page.url == f'http://{test_web_address}/index'
+
+'''
+When I am on my listings (/host-listings)
+I can click a my listings button 
+so that I can get to my listings
+'''
+
+def test_button_to_link_to_my_bookings(test_web_address, page):
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill('input[name="email"]', 'guest1@example.com')
+    page.fill('input[name="password"]', 'password1')
+    page.locator('.signin').click()
+    page.goto(f'http://{test_web_address}/host-listings')
+    page.locator('.mybookings').click()
+    assert page.url == f'http://{test_web_address}/my-bookings'
