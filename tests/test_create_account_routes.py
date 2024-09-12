@@ -55,3 +55,15 @@ def test_button_to_redirect_to_sign_in_page(test_web_address, page):
     page.goto(f'http://{test_web_address}/create-account')
     page.locator('.signin').click()
     assert page.url == f'http://{test_web_address}/sign-in'
+
+
+'''
+As a user on the create account page
+I can click on a homepage button
+so that I go back to the homepage
+'''
+
+def test_button_from_redirect_to_homepage(test_web_address, page):
+    page.goto(f'http://{test_web_address}/create-account')
+    page.locator('.homepage').click()
+    assert page.url == f'http://{test_web_address}/index'
