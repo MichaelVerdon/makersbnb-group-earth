@@ -36,7 +36,7 @@ def test_homepage_has_all_spaces_listed(test_web_address, page, db_connection):
     expect(page.locator('#end1')).to_have_text('Availability End: 2024-09-30')
 #space 2: Tree House
     expect(page.locator('#name2')).to_have_text('Name: Tree House')
-    expect(page.locator('#description2')).to_have_text('Description: A house my dad build in my backyard')
+    expect(page.locator('#description2')).to_have_text('Description: A house my dad build in my backyard.')
     expect(page.locator('#price2')).to_have_text('Price per Night: 125')
     expect(page.locator('#start2')).to_have_text('Availability Start: 2024-10-11')
     expect(page.locator('#end2')).to_have_text('Availability End: 2024-11-30')
