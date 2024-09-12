@@ -2,15 +2,25 @@
 <html>
     <head>
         <title>MakersBnB</title>
+        <nav class="nav">
+            <button class='mybookings'><a href="/my-bookings">My bookings</a></button>
+            <button class='hostlistings'><a href="/host-listings">My listings</a></button>
+        </nav>
 
-        <!--
-            Head to https://github.com/makersacademy/web-applications-in-python/blob/main/pills/loading_css_or_static_files.md
-            If you're wondering how the CSS file below is being loaded.
-        -->
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
         <p>This is the homepage.</p>
         <div class="current_user_username">{{ username }}</div>
+
+        <div>
+            {% for space in spaces %}
+            <p id="name{{ space.id }}">Name: {{ space.name }}</p>
+            <p id="description{{ space.id}}">Description: {{ space.description }}</p>
+            <p id="price{{ space.id }}">Price per Night: {{ space.price_per_night }}</p>
+            <p id="start{{ space.id }}">Availability Start: {{ space.availability_start }}</p>
+            <p id="end{{ space.id }}">Availability End: {{ space.availability_end }}</p>
+            {% endfor %}
+        </div>
     </body>
 </html>
