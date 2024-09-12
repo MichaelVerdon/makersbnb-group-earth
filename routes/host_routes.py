@@ -67,4 +67,15 @@ def get_host_routes(app):
         if end:
             repository.update_availability_end(space_id, end)
         
+        if end and start and end < start:
+            space = repository.get_by_id(space_id)
+            return render_template('update_space.html', space=space, error="End date cannot be earlier than start date.")
+        
+        if start:
+            repository.update_availability_start(space_id, start)
+        if end:
+            repository.update_availability_end(space_id, end)
+
         return redirect("/host-listings")
+
+    
