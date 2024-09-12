@@ -26,3 +26,11 @@ def apply_booking_routes(app):
             bookings.append(to_add)
 
         return render_template('/my_bookings.html', bookings=bookings)
+    
+
+    @app.route('/create-booking', methods=["GET"])
+    def get_create_booking():
+        place_id = request.args['place_id']
+        repo = SpaceRepository(get_flask_database_connection(app))
+        place = repo.get_by_id(place_id)
+        return render_template('create_booking.html', place=place)
