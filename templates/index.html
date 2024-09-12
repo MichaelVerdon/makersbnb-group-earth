@@ -7,11 +7,20 @@
             <button class='hostlistings'><a href="/host-listings">My listings</a></button>
         </nav>
 
-
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
         <p>This is the homepage.</p>
         <div class="current_user_username">{{ username }}</div>
+
+        <div>
+            {% for space in spaces %}
+            <p id="name{{ space.id }}">Name: {{ space.name }}</p>
+            <p id="description{{ space.id}}">Description: {{ space.description }}</p>
+            <p id="price{{ space.id }}">Price per Night: {{ space.price_per_night }}</p>
+            <p id="start{{ space.id }}">Availability Start: {{ space.availability_start }}</p>
+            <p id="end{{ space.id }}">Availability End: {{ space.availability_end }}</p>
+            {% endfor %}
+        </div>
     </body>
 </html>

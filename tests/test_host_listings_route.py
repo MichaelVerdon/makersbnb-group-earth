@@ -25,6 +25,7 @@ When I am on listings,
 I can go back to index 
 by clicking on a homepage button
 '''
+
 def test_button_from_host_listing_to_hompage(test_web_address, page):
     page.goto(f'http://{test_web_address}/sign-in')
     page.fill('input[name="email"]', 'guest1@example.com')
