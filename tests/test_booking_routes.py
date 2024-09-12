@@ -87,17 +87,17 @@ def test_already_taken_input(test_web_address, db_connection, page: Page):
     page.locator('.submit-booking').click()
     expect(page.locator(".error_message")).to_have_text("Date already booked by someone else!")
 
-# def test_not_in_date_range(test_web_address, db_connection, page: Page):
+def test_not_in_date_range(test_web_address, db_connection, page: Page):
 
-#     db_connection.seed('seeds/makersbnb.sql')
-#     page.goto(f'http://{test_web_address}/sign-in')
-#     page.fill("input[name='email']", 'guest2@example.com')
-#     page.fill("input[name='password']", 'password2')
-#     page.locator('.signin').click()
-#     page.goto(f'http://{test_web_address}/create-booking?place_id=1')
-#     page.fill("input[name='booking-date']", '2024-10-29')
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'guest2@example.com')
+    page.fill("input[name='password']", 'password2')
+    page.locator('.signin').click()
+    page.goto(f'http://{test_web_address}/create-booking?place_id=1')
+    page.fill("input[name='booking-date']", '2024-10-29')
 
-#     page.locator('.submit-booking').click()
+    page.locator('.submit-booking').click()
 
-#     page.screenshot(path="screenshot.png", full_page=True)
-#     expect(page.locator(".error_message")).to_have_text("Date not in availability range!")
+    page.screenshot(path="screenshot.png", full_page=True)
+    expect(page.locator(".error_message")).to_have_text("Date not in availability range!")
