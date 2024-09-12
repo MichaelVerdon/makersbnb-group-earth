@@ -40,24 +40,24 @@ class SpaceRepository():
 
     #this will update each detail of the space given the space's name
     
-    def update_name(self, name, new_name):
-        self.connection.execute("UPDATE spaces SET name=%s  WHERE name= %s", [new_name, name])
+    def update_name(self, space_id, new_name):
+        self.connection.execute("UPDATE spaces SET name=%s  WHERE id= %s", [new_name, space_id])
 
 
-    def update_description(self, name, new_description):
-        self.connection.execute("UPDATE spaces SET description=%s  WHERE name= %s", [new_description, name])
+    def update_description(self, space_id, new_description):
+        self.connection.execute("UPDATE spaces SET description=%s  WHERE id= %s", [new_description, space_id])
 
 
 
-    def update_price_per_night(self, name, new_price_per_night):
-        self.connection.execute("UPDATE spaces SET price_per_night=%s  WHERE name= %s", [new_price_per_night, name])
+    def update_price_per_night(self, space_id, new_price_per_night):
+        self.connection.execute("UPDATE spaces SET price_per_night=%s  WHERE id= %s", [new_price_per_night, space_id])
 
-    def update_availability_start(self, name, new_availability_start):
-        self.connection.execute("UPDATE spaces SET availability_start=%s  WHERE name= %s", [new_availability_start, name])
+    def update_availability_start(self, space_id, new_availability_start):
+        self.connection.execute("UPDATE spaces SET availability_start=%s  WHERE id= %s", [new_availability_start, space_id])
 
 
-    def update_availability_end(self, name, new_availability_end):
-        self.connection.execute("UPDATE spaces SET availability_end=%s  WHERE name= %s", [new_availability_end, name])
+    def update_availability_end(self, space_id, new_availability_end):
+        self.connection.execute("UPDATE spaces SET availability_end=%s  WHERE id= %s", [new_availability_end, space_id])
 
 
 
