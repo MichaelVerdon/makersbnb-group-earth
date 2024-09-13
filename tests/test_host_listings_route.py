@@ -195,4 +195,17 @@ def test_user_updates_space_availability_start_when_start_is_after_end(test_web_
     page.locator('.update').click()
     expect(page.locator('.errormessage')).to_have_text("End date cannot be earlier than start date.")
 
+"""
+When I delete a space it is no longer visible
+"""
+def test_user_delete_space(test_web_address, db_connection, page: Page):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'host1@example.com')
+    page.fill("input[name='password']", 'password3')
+    page.locator('.signin').click()
+    page.goto(f'http://{test_web_address}/host-listings')
+    page.locator('.delete_1').click()
+    expect(page.locator('h2')).to_have_text('Your Listings')
+    expect(page.locator('.name')).to_have_count(0)
 

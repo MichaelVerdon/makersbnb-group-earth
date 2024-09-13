@@ -11,6 +11,13 @@
             <button class='mybookings'><a href="/my-bookings">My bookings</a></button>
         </nav>
         <link rel="stylesheet" href="/static/style.css" >
+        <script>
+            function confirmDelete(spaceId) {
+                if (confirm("Are you sure you want to delete this space?")) {
+                    window.location.href = "/delete-space/" + spaceId;
+                }
+            }
+        </script>
     </head>
     <body>
         <h2>Your Listings</h2>
@@ -26,7 +33,11 @@
         <p class="price">Price per Night: {{ space.price_per_night }}</p>
         <p class="start">Availability Start: {{ space.availability_start }}</p>
         <p class="end">Availability End: {{ space.availability_end }}</p>
-        <button>Delete</button> <!--Need to add function, place holder for now-->
+
+        <a href="/delete-space/{{space.id}}">
+            <button class="delete_{{space.id}}" onclick="confirmDelete()">Delete</button> <!--Need to add function, place holder for now-->
+        </a>
+
         <a href="/update-space/{{space.id}}">
             <button class="update_{{space.id}}">Update</button> <!--Need to add function, place holder for now-->
         </a>

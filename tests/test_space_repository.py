@@ -64,3 +64,14 @@ def test_update_space(db_connection):
 
     repository.update_availability_end(1, '2024-10-11')
     assert repository.get_by_id(1)== Space(1, 'Lake House', 'A beautiful lake house with ocean view.', 300, '2024-09-25', '2024-10-11', 3)
+
+
+def test_delete_space(db_connection):
+    db_connection.seed("seeds/makersbnb.sql")
+    repository = SpaceRepository(db_connection)
+    repository.delete(1)
+    result = repository.all()
+    assert result == [
+                    Space(2, 'Tree House', 'A house my dad build in my backyard.', 125, '2024-10-11', '2024-11-30', 1),
+                    Space(3, 'Mountain Cabin', 'A cozy cabin in the mountains.', 120, '2024-10-01', '2024-10-15', 4)
+                    ]
