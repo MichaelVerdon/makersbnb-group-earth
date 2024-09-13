@@ -19,8 +19,8 @@
         <p>Available-from: {{place.availability_start}} to {{place.availability_end}}</p>
 
         <form action="/create-booking" method="post">
-            <label for="booking-date">Booking Date (YYYY-MM-DD):</label><br>
-            <input type="text" id="booking-date" name="booking-date" required><br><br>
+            <label for="booking-date">Booking Date::</label><br>
+            <input type="date" id="booking-date" name="booking-date" required><br><br>
             <input type="hidden" name="place_id" value='{{ place.id }}'>
 
 

@@ -8,7 +8,7 @@ def test_user_signs_in(test_web_address, db_connection, page: Page):
     page.fill("input[name='password']", 'password1')
     page.locator('.signin').click()
     username_status_element = page.locator(".current_user_username")
-    expect(username_status_element).to_have_text("guest1")
+    expect(username_status_element).to_have_text("Hello, guest1!")
 
 
 def test_user_signs_in_with_incorrect_email_but_correct_password(test_web_address, db_connection, page: Page):

@@ -21,18 +21,20 @@
     <body>
         <h1>My Bookings</h1>
         <p>Your Bookings:</p>
-        <div>
-        {% for booking in bookings %}
-        <h3>Date</h3>
-        <p class="date">
-            {{ booking["date"] }}
-        </p>
-        <h3>Details</h3>
-        <p class="details">
-            Place: {{ booking["name"] }},
-            Price: {{ booking["price"] }}
-        </p>
-        {% endfor %}
+        <div class="list">
+            {% for booking in bookings %}
+            <div class="card">
+                <h3>Date</h3>
+                <p class="date">
+                    {{ booking["date"] }}
+                </p>
+                <h3>Name and Price</h3>
+                <p class="details">
+                    {{ booking["name"] }}
+                    {{ booking["price"] }}
+                </p>
+            </div>
+            {% endfor %}
         </div>
     </body>
 </html>
