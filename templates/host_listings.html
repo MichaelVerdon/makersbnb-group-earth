@@ -32,20 +32,24 @@
         <!--
             Loop through host's spaces and show space values to user
         -->
-        {% for space in spaces %}
-        <p id="name">Name: {{ space.name }} </p>
-        <p id="description">Description: {{ space.description }} </p>
-        <p id="price">Price per Night: {{ space.price_per_night }}</p>
-        <p id="start">Availability Start: {{ space.availability_start }}</p>
-        <p id="end">Availability End: {{ space.availability_end }}</p>
-
-        <a href="/delete-space/{{space.id}}">
-            <button id="delete_{{space.id}}" onclick="confirmDelete()">Delete</button> <!--Need to add function, place holder for now-->
-        </a>
-
-        <a href="/update-space/{{space.id}}">
-            <button id="update_{{space.id}}">Update</button> <!--Need to add function, place holder for now-->
-        </a>
-        {% endfor %}
+        <div class="list">
+            {% for space in spaces %}
+            <div class="card">
+                <p id="name">Name: {{ space.name }} </p>
+                <p id="description">Description: {{ space.description }} </p>
+                <p id="price">Price per Night: {{ space.price_per_night }}</p>
+                <p id="start">Availability Start: {{ space.availability_start }}</p>
+                <p id="end">Availability End: {{ space.availability_end }}</p>
+                
+                <a href="/delete-space/{{space.id}}">
+                    <button class="btn-delete" id="delete_{{space.id}}" onclick="confirmDelete()">Delete</button> <!--Need to add function, place holder for now-->
+                </a>
+                
+                <a href="/update-space/{{space.id}}">
+                    <button class="btn-update" id="update_{{space.id}}">Update</button> <!--Need to add function, place holder for now-->
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </body>
 </html>

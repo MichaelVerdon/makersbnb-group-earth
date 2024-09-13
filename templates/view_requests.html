@@ -11,22 +11,25 @@
     </head>
     <body>
         <h2>View your requests</h2>
+        <div class="list">
 
         {% for booking in bookings %}
-        <h3>Space Details:</h3>
-        <p id="name">
-            Name: {{ booking["name"] }}
-        </p>
-        <p id="price">
-            Price: {{ booking["price"] }}
-        </p>
-        <h3>Booking Details</h3>
-        <p id="details">
-            Username: {{ booking["username"] }}
-            Email: {{ booking["email"] }}
-            Date: {{ booking["date"] }}
-        </p>
+        <div class="card">
+            <h3>Space Details:</h3>
+            <p id="name">
+                Name: {{ booking["name"] }}
+            </p>
+            <p id="price">
+                Price: {{ booking["price"] }}
+            </p>
+            <h3>Booking Details</h3>
+            <p id="details">
+                Username: {{ booking["username"] }}
+                Email: {{ booking["email"] }}
+                Date: {{ booking["date"] }}
+            </p>
+        </div>
         {% endfor %}
-
+        </div>
     </body>
 </html>
