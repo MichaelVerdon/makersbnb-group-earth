@@ -77,7 +77,13 @@ def get_host_routes(app):
         if end:
             repository.update_availability_end(space_id, end)
         
+        return redirect("/host-listings")
+    
 
+    @app.route("/delete-space/<int:space_id>", methods=["GET"])
+    def delete_space(space_id):
+        connection = get_flask_database_connection(app)
+        repository = SpaceRepository(connection)
+        repository.delete(space_id)
         return redirect("/host-listings")
 
-    

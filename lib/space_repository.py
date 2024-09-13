@@ -59,6 +59,8 @@ class SpaceRepository():
     def update_availability_end(self, space_id, new_availability_end):
         self.connection.execute("UPDATE spaces SET availability_end=%s  WHERE id= %s", [new_availability_end, space_id])
 
+    def delete(self, space_id):
+        self.connection.execute('DELETE FROM spaces WHERE id = %s', [space_id])
 
 
 
