@@ -22,3 +22,7 @@ class UserRepository:
             row = rows[0]
             return User(row['id'], row['email'], row['password'], row['username'])
         
+    def find_by_id(self, id):
+        row = self._connection.execute('SELECT * FROM users WHERE id = %s', [id])[0]
+        return User(row['id'], row['email'], row['password'], row['username'])
+        

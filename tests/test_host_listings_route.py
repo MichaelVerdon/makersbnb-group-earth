@@ -1,7 +1,10 @@
 from routes.user_routes import *
 from playwright.sync_api import Page, expect
 from lib.user_repository import UserRepository
-
+from lib.space_repository import SpaceRepository
+from lib.booking import Booking
+from lib.space import Space
+from lib.booking_repository import BookingRepository
 """
 When a host signs in and goes to their listings
 They can see all of their spaces
@@ -222,5 +225,10 @@ def test_view_requests(test_web_address, db_connection, page: Page):
     page.goto(f'http://{test_web_address}/host-listings')
     page.locator('#viewrequests').click()
     expect(page.locator('h2')).to_have_text('View your requests')
+    expect(page.locator('#name')).to_have_text('Name: Beach House')
+
+
+
+
 
 
