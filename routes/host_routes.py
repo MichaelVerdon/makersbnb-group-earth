@@ -52,29 +52,31 @@ def get_host_routes(app):
         connection = get_flask_database_connection(app)
         repository = SpaceRepository(connection)
         name = request.form['name']
-        if name:
-            repository.update_name(space_id, name)
         description = request.form['description']
-        if description:
-            repository.update_description(space_id, description)
         price = request.form['price_per_night']
-        if price:
-            repository.update_price_per_night(space_id, price)
         start = request.form['availability_start']
-        if start:
-            repository.update_availability_start(space_id, start)
         end = request.form['availability_end']
-        if end:
-            repository.update_availability_end(space_id, end)
+
+        space = repository.get_by_id(space_id)
         
         if end and start and end < start:
-            space = repository.get_by_id(space_id)
             return render_template('update_space.html', space=space, error="End date cannot be earlier than start date.")
-        
+        if end and end < space.availability_start:
+            return render_template('update_space.html', space=space, error="End date cannot be earlier than start date.")
+        if start and start > space.availability_end:
+            return render_template('update_space.html', space=space, error="End date cannot be earlier than start date.")
+
+        if name:
+            repository.update_name(space_id, name)
+        if description:
+            repository.update_description(space_id, description)
+        if price:
+            repository.update_price_per_night(space_id, price)
         if start:
             repository.update_availability_start(space_id, start)
         if end:
             repository.update_availability_end(space_id, end)
+        
 
         return redirect("/host-listings")
 

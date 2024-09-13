@@ -117,7 +117,6 @@ def test_user_updates_space_availability_start(test_web_address, db_connection, 
     expect(page.locator('.availability_start')).to_have_text('2024-09-15')
     page.fill("input[name='availability_start']", '2024-09-29')
     page.locator('.update').click()
-    page.screenshot(path='screenshot.png', full_page=True)
     expect(page.locator('.start').nth(0)).to_have_text('Availability Start: 2024-09-29')
 
 def test_user_updates_space_availability_end(test_web_address, db_connection, page: Page):
@@ -131,5 +130,39 @@ def test_user_updates_space_availability_end(test_web_address, db_connection, pa
     expect(page.locator('.availability_end')).to_have_text('2024-09-30')
     page.fill("input[name='availability_end']", '2024-10-15')
     page.locator('.update').click()
-    page.screenshot(path='screenshot.png', full_page=True)
     expect(page.locator('.end').nth(0)).to_have_text('Availability End: 2024-10-15')
+
+"""
+When a user tries to update the end so its before the start date, they get an error
+"""
+
+def test_user_updates_space_availability_end_when_end_is_before_start(test_web_address, db_connection, page: Page):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'host1@example.com')
+    page.fill("input[name='password']", 'password3')
+    page.locator('.signin').click()
+    page.goto(f'http://{test_web_address}/host-listings')
+    page.locator('.update_1').click()
+    expect(page.locator('.availability_end')).to_have_text('2024-09-30')
+    page.fill("input[name='availability_end']", '2024-08-15')
+    page.locator('.update').click()
+    expect(page.locator('.errormessage')).to_have_text("End date cannot be earlier than start date.")
+
+"""
+When a user tries to update the start so its after the end date, they get an error
+"""
+
+def test_user_updates_space_availability_start_when_start_is_after_end(test_web_address, db_connection, page: Page):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'host1@example.com')
+    page.fill("input[name='password']", 'password3')
+    page.locator('.signin').click()
+    page.goto(f'http://{test_web_address}/host-listings')
+    page.locator('.update_1').click()
+    expect(page.locator('.availability_start')).to_have_text('2024-09-15')
+    page.fill("input[name='availability_start']", '2024-10-29')
+    page.locator('.update').click()
+    expect(page.locator('.errormessage')).to_have_text("End date cannot be earlier than start date.")
+
