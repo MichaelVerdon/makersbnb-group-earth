@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Space</title>
+</head>
+<body>
+
+    <h2  class="page-title">Update Space</h2>
+    
+    <form action="/update-space/{{space.id}}" method="post" novalidate>
+        
+        <p class="name">{{ space.name }}</p>
+        <label for="name"></label><br>
+        <input type="text" id="name" name="name" formnovalidate placeholder="{{ space.name }}"><br><br>
+        
+        <p class="description">{{ space.description }}</p>
+        <label for="description"></label><br>
+        <input type="text" id="description" name="description" formnovalidate placeholder="{{ space.description }}"><br><br>
+        
+        <p class="price">{{ space.price_per_night }}</p>
+        <label for="price_per_night"></label><br>
+        <input type="number" id="price_per_night" name="price_per_night" formnovalidate placeholder="{{ space.price_per_night }}"><br><br>
+        
+        <p class="availability_start">{{ space.availability_start }}</p>
+        <label for="availability_start">Availability Start:</label><br>
+        <input type="date" id="availability_start" name="availability_start" formnovalidate placeholder="{{ space.availability_start }}"><br><br>
+        
+        <p class="availability_end">{{ space.availability_end }}</p>
+        <label for="availability_end">Availability End:</label><br>
+        <input type="date" id="availability_end" name="availability_end" formnovalidate placeholder="{{ space.availability_end }}"><br><br>
+
+        {% if error %}
+        <p class="errormessage" style="color:red">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit" class="update">Update</button>
+    </form>
+
+    <script>
+        function setEndDateMin() {
+            var startDate = document.getElementById('availability_start').value;
+            document.getElementById('availability_end').min = startDate;
+        }
+    </script>
+</body>
+</html>

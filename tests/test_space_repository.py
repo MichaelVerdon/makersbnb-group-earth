@@ -9,7 +9,7 @@ def test_return_all(db_connection):
     result = repository.all()
     assert result == [
                     Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3),
-                    Space(2, 'Tree House', 'A house my dad build in my backyard', 125, '2024-10-11', '2024-11-30', 1),
+                    Space(2, 'Tree House', 'A house my dad build in my backyard.', 125, '2024-10-11', '2024-11-30', 1),
                     Space(3, 'Mountain Cabin', 'A cozy cabin in the mountains.', 120, '2024-10-01', '2024-10-15', 4)
                     ]
 
@@ -23,7 +23,7 @@ def test_create_a_space(db_connection):
     result = repository.all()
     assert result == [
         Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3),
-        Space(2, 'Tree House', 'A house my dad build in my backyard', 125, '2024-10-11', '2024-11-30', 1),
+        Space(2, 'Tree House', 'A house my dad build in my backyard.', 125, '2024-10-11', '2024-11-30', 1),
         Space(3, 'Mountain Cabin', 'A cozy cabin in the mountains.', 120, '2024-10-01', '2024-10-15', 4),
         Space(4, 'Castle', 'A lovely castle.', 500, '2024-12-25', '2024-12-27', 2)
     ]
@@ -42,3 +42,25 @@ def test_get_place_details_by_id(db_connection):
     assert result == Space(1, 'Beach House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3)
 
 
+"""
+given a space name the host can update the space name
+
+"""
+
+def test_update_space(db_connection):
+    db_connection.seed("seeds/makersbnb.sql")
+    repository = SpaceRepository(db_connection)
+    repository.update_name(1, 'Lake House')
+    assert repository.get_by_id(1)== Space(1, 'Lake House', 'A beautiful beach house with ocean view.', 150, '2024-09-15', '2024-09-30', 3)
+
+    repository.update_description(1, 'A beautiful lake house with ocean view.')
+    assert repository.get_by_id(1)== Space(1, 'Lake House', 'A beautiful lake house with ocean view.', 150, '2024-09-15', '2024-09-30', 3)
+
+    repository.update_price_per_night(1, 300)
+    assert repository.get_by_id(1)== Space(1, 'Lake House', 'A beautiful lake house with ocean view.', 300, '2024-09-15', '2024-09-30', 3)
+
+    repository.update_availability_start(1, '2024-09-25')
+    assert repository.get_by_id(1)== Space(1, 'Lake House', 'A beautiful lake house with ocean view.', 300, '2024-09-25', '2024-09-30', 3)
+
+    repository.update_availability_end(1, '2024-10-11')
+    assert repository.get_by_id(1)== Space(1, 'Lake House', 'A beautiful lake house with ocean view.', 300, '2024-09-25', '2024-10-11', 3)
