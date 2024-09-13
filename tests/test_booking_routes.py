@@ -26,8 +26,8 @@ def test_view_bookings_with_details(test_web_address, db_connection, page: Page)
     
     p_list = page.locator(".details")
 
-    expect(p_list.nth(0)).to_have_text("Beach House\n150")
-    expect(p_list.nth(1)).to_have_text("Mountain Cabin\n120")
+    expect(p_list.nth(0)).to_have_text("Place: Beach House,\nPrice: 150")
+    expect(p_list.nth(1)).to_have_text("Place: Mountain Cabin,\nPrice: 120")
 
 def test_get_booking_page(test_web_address, db_connection, page: Page):
     db_connection.seed('seeds/makersbnb.sql')
@@ -58,7 +58,8 @@ def test_post_create_booking(test_web_address, db_connection, page: Page):
 
     p_list = page.locator(".details")
 
-    expect(p_list.nth(1)).to_have_text("Beach House\n150")
+    page.screenshot(path='screenshot.png', full_page=True)
+    expect(p_list.nth(1)).to_have_text("Place: Beach House,\nPrice: 150")
 
 # def test_wrong_type_input(test_web_address, db_connection, page: Page):
 
