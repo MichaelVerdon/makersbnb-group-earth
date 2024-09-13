@@ -29,10 +29,20 @@
         
         <p class="availability_end">{{ space.availability_end }}</p>
         <label for="availability_end">Availability End:</label><br>
-        <input type="date" id="availability_end" name="availability_end" formnovalidate placeholder="{{ space.availability_start }}"><br><br>
+        <input type="date" id="availability_end" name="availability_end" formnovalidate placeholder="{{ space.availability_end }}"><br><br>
 
+        {% if error %}
+        <p class="errormessage" style="color:red">{{ error }}</p>
+        {% endif %}
 
         <button type="submit" class="update">Update</button>
     </form>
+
+    <script>
+        function setEndDateMin() {
+            var startDate = document.getElementById('availability_start').value;
+            document.getElementById('availability_end').min = startDate;
+        }
+    </script>
 </body>
 </html>
