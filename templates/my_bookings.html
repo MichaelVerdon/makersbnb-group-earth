@@ -6,12 +6,12 @@
         <nav class="nav">
             <button class='homepage'>
                 <a href="/index">
-                   Homepage 
+                    Homepage 
                 </a>
             </button>
             <button class='mylistings'>
                 <a href="/host-listings">
-                   My listings 
+                    My listings 
                 </a>
             </button>
         </nav>
@@ -25,10 +25,10 @@
         <p class="date">
             {{ booking["date"] }}
         </p>
-        <h3>Name and Price</h3>
+        <h3>Details</h3>
         <p class="details">
-            {{ booking["name"] }}
-            {{ booking["price"] }}
+            Place: {{ booking["name"] }},
+            Price: {{ booking["price"] }}
         </p>
         {% endfor %}
         </div>
