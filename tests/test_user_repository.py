@@ -42,3 +42,8 @@ def test_verify_with_valid_details(db_connection):
     db_connection.seed('seeds/makersbnb.sql')
     repository = UserRepository(db_connection)
     repository.verify_user('guest2@example.com', 'password2')
+
+def test_find_by_id(db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    repository = UserRepository(db_connection)
+    assert repository.find_by_id(1) == User(1, 'guest1@example.com', 'password1', 'guest1')

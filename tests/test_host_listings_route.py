@@ -1,7 +1,10 @@
 from routes.user_routes import *
 from playwright.sync_api import Page, expect
 from lib.user_repository import UserRepository
-
+from lib.space_repository import SpaceRepository
+from lib.booking import Booking
+from lib.space import Space
+from lib.booking_repository import BookingRepository
 """
 When a host signs in and goes to their listings
 They can see all of their spaces
@@ -209,4 +212,23 @@ def test_user_delete_space(test_web_address, db_connection, page: Page):
     page.locator('#delete_1').click()
     expect(page.locator('h2')).to_have_text('Your Listings')
     expect(page.locator('#name')).to_have_count(0)
+
+"""
+When I click view requests button I am taken to another page and I can see who booked my spaces 
+"""
+def test_view_requests(test_web_address, db_connection, page: Page):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'host1@example.com')
+    page.fill("input[name='password']", 'password3')
+    page.locator('.signin').click()
+    page.goto(f'http://{test_web_address}/host-listings')
+    page.locator('#viewrequests').click()
+    expect(page.locator('h2')).to_have_text('View your requests')
+    expect(page.locator('#name')).to_have_text('Name: Beach House')
+
+
+
+
+
 
