@@ -5,6 +5,11 @@
         <nav class="nav">
             <button class='mybookings'><a href="/my-bookings">My bookings</a></button>
             <button class='hostlistings'><a href="/host-listings">My listings</a></button>
+            {% if not username %}
+                <button class='signed-in-status'><a href="/sign-in">Sign In</a></button>
+            {% else %}
+                <button class='signed-in-status'><a href="/sign-in">Sign Out</a></button>
+            {% end if %}
         </nav>
 
         <link rel="stylesheet" href="/static/style.css" >
@@ -20,6 +25,9 @@
             <p id="price{{ space.id }}">Price per Night: {{ space.price_per_night }}</p>
             <p id="start{{ space.id }}">Availability Start: {{ space.availability_start }}</p>
             <p id="end{{ space.id }}">Availability End: {{ space.availability_end }}</p>
+            <button class="bookspace{{ space.id }}">
+                <a href="/create-booking?place_id={{ space.id }}">Book this Space</a>
+            </button>
             {% endfor %}
         </div>
     </body>

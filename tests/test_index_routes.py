@@ -46,3 +46,25 @@ def test_homepage_has_all_spaces_listed(test_web_address, page, db_connection):
     expect(page.locator('#price3')).to_have_text('Price per Night: 120')
     expect(page.locator('#start3')).to_have_text('Availability Start: 2024-10-01')
     expect(page.locator('#end3')).to_have_text('Availability End: 2024-10-15')
+
+def test_not_signed_in(test_web_address, page, db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/index')
+
+    page.screenshot(path="screenshot.png", full_page=True)
+    expect(page.locator(".signed-in-status")).to_have_text("Sign In")
+
+    page.locator(".signed-in-status").click()
+    assert page.url == f"http://{test_web_address}/sign-in"
+
+def test_signed_in(test_web_address, page, db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'guest2@example.com')
+    page.fill("input[name='password']", 'password2')
+    page.locator('.signin').click()
+
+    expect(page.locator(".signed-in-status")).to_have_text("Sign Out")
+    page.locator(".signed-in-status").click()
+    assert page.url == f"http://{test_web_address}/sign-in"
+
