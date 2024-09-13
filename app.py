@@ -21,7 +21,11 @@ def get_index():
     else:
         username = ""
 
-    return render_template('index.html', username=username)
+    connection = get_flask_database_connection(app)
+    repository = SpaceRepository(connection)
+    spaces = repository.all()
+
+    return render_template('index.html', username=username, spaces=spaces)
 
 # imports space routes
 from routes.space_routes import apply_space_routes
