@@ -5,11 +5,11 @@
         <nav class="nav">
             <button class='mybookings'><a href="/my-bookings">My bookings</a></button>
             <button class='hostlistings'><a href="/host-listings">My listings</a></button>
-            {% if not username %}
+            {% if not username or username == None %}
                 <button class='signed-in-status'><a href="/sign-in">Sign In</a></button>
             {% else %}
-                <button class='signed-in-status'><a href="/sign-in">Sign Out</a></button>
-            {% end if %}
+                <button class='signed-in-status'><a href="/sign-out">Sign Out</a></button>
+            {% endif %}
         </nav>
 
         <link rel="stylesheet" href="/static/style.css" >

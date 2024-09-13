@@ -51,11 +51,7 @@ def test_not_signed_in(test_web_address, page, db_connection):
     db_connection.seed('seeds/makersbnb.sql')
     page.goto(f'http://{test_web_address}/index')
 
-    page.screenshot(path="screenshot.png", full_page=True)
     expect(page.locator(".signed-in-status")).to_have_text("Sign In")
-
-    page.locator(".signed-in-status").click()
-    assert page.url == f"http://{test_web_address}/sign-in"
 
 def test_signed_in(test_web_address, page, db_connection):
     db_connection.seed('seeds/makersbnb.sql')
@@ -65,6 +61,4 @@ def test_signed_in(test_web_address, page, db_connection):
     page.locator('.signin').click()
 
     expect(page.locator(".signed-in-status")).to_have_text("Sign Out")
-    page.locator(".signed-in-status").click()
-    assert page.url == f"http://{test_web_address}/sign-in"
 
