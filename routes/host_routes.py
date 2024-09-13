@@ -4,6 +4,7 @@ from lib.user_repository import UserRepository
 from lib.space_repository import SpaceRepository
 from lib.user import User
 from lib.space import Space
+from lib.booking_repository import BookingRepository
 import os
 import sys
 
@@ -87,3 +88,13 @@ def get_host_routes(app):
         repository.delete(space_id)
         return redirect("/host-listings")
 
+    @app.route("/view-requests", methods=["GET"])
+    def view_requests():
+        connection = get_flask_database_connection(app)
+        space_repository = SpaceRepository(connection)
+        bookings_repository= BookingRepository(connection)
+        spaces = space_repository.get_by_user_id(session["user_id"])
+        bookings=[]
+        for space in spaces:
+            bookings.extend(bookings_repository.find_bookings_by_place(space.id))
+        return render_template("view_requests.html", bookings=bookings)

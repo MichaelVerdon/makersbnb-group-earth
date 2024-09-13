@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MakersBnB</title>
+        <nav class="nav">
+            <button class='mybookings'><a href="/my-bookings">My bookings</a></button>
+            <button class='hostlistings'><a href="/host-listings">My listings</a></button>
+        </nav>
+
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <h2>View your requests</h2>
+
+        {% for booking in bookings %}
+        <h3>Date</h3>
+        <p class="date">
+            {{ booking["date"] }}
+        </p>
+        <h3>Name and Price</h3>
+        <p class="details">
+            {{ booking["name"] }}
+            {{ booking["price"] }}
+        </p>
+        {% endfor %}
+
+    </body>
+</html>
