@@ -99,3 +99,15 @@ def test_not_in_date_range(test_web_address, db_connection, page: Page):
 
     page.locator('.submit-booking').click()
     expect(page.locator(".error_message")).to_have_text("Date not in availability range!")
+
+def test_not_in_date_range(test_web_address, db_connection, page: Page):
+
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f'http://{test_web_address}/sign-in')
+    page.fill("input[name='email']", 'guest2@example.com')
+    page.fill("input[name='password']", 'password2')
+    page.locator('.signin').click()
+
+    page.locator(".bookspace2").click()
+
+    expect(page.locator("h1")).to_have_text("Tree House")
