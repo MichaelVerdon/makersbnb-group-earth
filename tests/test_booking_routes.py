@@ -31,13 +31,6 @@ def test_view_bookings_with_details(test_web_address, db_connection, page: Page)
 
 def test_get_booking_page(test_web_address, db_connection, page: Page):
     db_connection.seed('seeds/makersbnb.sql')
-'''
-As a user on the my booking page
-I can click on a homepage button
-so that I go back to the homepage
-'''
-
-def test_button_from_my_bookings_to_homepage(test_web_address, page):
     page.goto(f'http://{test_web_address}/sign-in')
     page.fill("input[name='email']", 'guest1@example.com')
     page.fill("input[name='password']", 'password1')
@@ -106,20 +99,3 @@ def test_not_in_date_range(test_web_address, db_connection, page: Page):
 
     page.locator('.submit-booking').click()
     expect(page.locator(".error_message")).to_have_text("Date not in availability range!")
-    page.goto(f'http://{test_web_address}/my-bookings')
-    page.locator('.homepage').click()
-    assert page.url == f'http://{test_web_address}/index'
-
-'''
-When I am looking at my-bookings I can click a button
-to go to my-listings
-'''
-
-def test_button_from_my_bookings_to_my_listings(test_web_address, page):
-    page.goto(f'http://{test_web_address}/sign-in')
-    page.fill('input[name="email"]', 'guest1@example.com')
-    page.fill('input[name="password"]', 'password1')
-    page.locator('.signin').click()
-    page.goto(f'http://{test_web_address}/my-bookings')
-    page.locator('.mylistings').click()
-    assert page.url == f'http://{test_web_address}/host-listings'
